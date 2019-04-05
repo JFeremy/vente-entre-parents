@@ -10,19 +10,19 @@ module.exports = {
         theme: {
           palette: {
             primary: {
-              light: '#ffad42',
-              main: '#f57c00',
-              dark: '#bb4d00',
+              light: '#ffffe4',
+              main: '#ffe0b2',
+              dark: '#cbae82',
             },
             secondary: {
-              light: '#9c786c',
-              main: '#6d4c41',
-              dark: '#40241a',
+              light: '#fffffb',
+              main: '#d7ccc8',
+              dark: '#a69b97',
             },
             error: {
-              light: '#ff7961',
-              main: '#f44336',
-              dark: '#ba000d',
+              light: '#f05545',
+              main: '#b71c1c',
+              dark: '#7f0000',
             },
           },
           typography: {

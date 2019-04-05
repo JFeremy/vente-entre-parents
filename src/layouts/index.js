@@ -10,6 +10,18 @@ class Layout extends Component {
     authenticated: false,
   }
 
+  ChangeLanguage = () => {
+    let _strSignInLinks = document.getElementsByClassName(
+      'firebaseui-idp-text-long'
+    )
+    for (let link of _strSignInLinks) {
+      link.textContent = link.textContent.replace(
+        'Sign in with',
+        'Connexion avec'
+      )
+    }
+  }
+
   componentDidMount() {
     const app = import('firebase/app')
     const auth = import('firebase/auth')
@@ -27,6 +39,13 @@ class Layout extends Component {
         }
       })
     })
+
+    // eslint-disable-next-line no-lone-blocks
+    {
+      setTimeout(() => {
+        this.ChangeLanguage()
+      }, 1000)
+    }
   }
 
   render = () => {
