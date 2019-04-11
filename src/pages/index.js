@@ -14,8 +14,7 @@ const IndexPage = () => (
       See example data fetcehed from firebase: in{' '}
       <code>FetchingExample.js</code>
     </p>
-    <FetchingExample />
-    <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/page-2/">Go to page 2 </Link>
     <SignOut />
   </Layout>
 )

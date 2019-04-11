@@ -1,26 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
-import Input from '@material-ui/core/Input'
-import Select from '@material-ui/core/Select'
-import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Button from '@material-ui/core/Button'
 
 import DoneIcon from '@material-ui/icons/Done'
 import ClearIcon from '@material-ui/icons/Clear'
-import ChildCareIcon from '@material-ui/icons/ChildCare'
-import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
-import TitleIcon from '@material-ui/icons/Title'
-import TextFieldsIcon from '@material-ui/icons/TextFields'
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 
-import ArticleFormInput from './ArticleFormInput'
+import ArticleButtons from './ArticleButtons'
+import ArticleFieldText from './ArticleFieldText'
+import AddFieldFormat from '../RP/AddFieldFormat'
 
 const styles = theme => ({
   root: {
@@ -28,7 +20,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
-  buttons: {
+  divPart: {
     marginTop: theme.spacing.unit * 2,
   },
   button: {
@@ -41,6 +33,149 @@ const styles = theme => ({
 
 const ArticleForm = props => {
   const { classes } = props
+  const [state, setState] = useState({
+    title: '',
+    description: '',
+    sex: 'default',
+    category: 'default',
+    ageBegin: 'default',
+    ageEnd: 'default',
+    price: '',
+    photo1: '',
+    photo2: '',
+    photo3: '',
+    photo4: '',
+    photo5: '',
+  })
+
+  useEffect(() => {
+    setState({
+      ...state,
+    })
+  }, [state])
+
+  function handleChange(event) {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    })
+  }
+  const fields = [
+    {
+      label: 'Titre',
+      id: 'title',
+      type: 'text',
+    },
+    {
+      label: 'Description',
+      id: 'description',
+      type: 'text',
+    },
+    {
+      label: 'Sexe',
+      id: 'sex',
+      type: 'select',
+      options: [
+        {
+          value: 'default',
+          text: 'Unisexe',
+        },
+        {
+          value: 'girl',
+          text: 'Fille',
+        },
+        {
+          value: 'boy',
+          text: 'Garçon',
+        },
+      ],
+    },
+    {
+      label: 'Catégorie',
+      id: 'category',
+      type: 'select',
+      options: [
+        {
+          value: 'default',
+          text: 'Autre(s)',
+        },
+        {
+          value: 'clothes',
+          text: 'Vêtement(s)',
+        },
+        {
+          value: 'toys',
+          text: 'Jouet(s)',
+        },
+        {
+          value: 'equipment',
+          text: 'Equipement(s)',
+        },
+      ],
+    },
+    {
+      label: 'A partir de ',
+      id: 'ageBegin',
+      type: 'select',
+      options: [
+        { value: 'default', text: 'Indéfini' },
+        { value: '0', text: 'Naissance' },
+        { value: '0.1', text: '1 mois' },
+        { value: '0.2', text: '3 mois' },
+        { value: '0.5', text: '6 mois' },
+        { value: '0.7', text: '9 mois' },
+        { value: '1', text: '12 mois' },
+        { value: '1.5', text: '18 mois' },
+        { value: '2', text: '2 ans' },
+        { value: '3', text: '3 ans' },
+        { value: '4', text: '4 ans' },
+        { value: '5', text: '5 ans' },
+        { value: '6', text: '6 ans' },
+        { value: '7', text: '7 ans' },
+        { value: '8', text: '8 ans' },
+        { value: '9', text: '9 ans' },
+        { value: '10', text: '10 ans' },
+        { value: '11', text: '11 ans' },
+        { value: '12', text: '12 ans' },
+        { value: '13', text: '13 ans' },
+        { value: '14', text: '14 ans' },
+      ],
+    },
+    {
+      label: "Jusqu'à  ",
+      id: 'ageEnd',
+      type: 'select',
+      options: [
+        { value: 'default', text: 'Indéfini' },
+        { value: '0', text: 'Naissance' },
+        { value: '0.1', text: '1 mois' },
+        { value: '0.2', text: '3 mois' },
+        { value: '0.5', text: '6 mois' },
+        { value: '0.7', text: '9 mois' },
+        { value: '1', text: '12 mois' },
+        { value: '1.5', text: '18 mois' },
+        { value: '2', text: '2 ans' },
+        { value: '3', text: '3 ans' },
+        { value: '4', text: '4 ans' },
+        { value: '5', text: '5 ans' },
+        { value: '6', text: '6 ans' },
+        { value: '7', text: '7 ans' },
+        { value: '8', text: '8 ans' },
+        { value: '9', text: '9 ans' },
+        { value: '10', text: '10 ans' },
+        { value: '11', text: '11 ans' },
+        { value: '12', text: '12 ans' },
+        { value: '13', text: '13 ans' },
+        { value: '14', text: '14 ans' },
+      ],
+    },
+    {
+      label: 'Prix',
+      id: 'price',
+      type: 'number',
+    },
+  ]
+  const photos = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5']
   return (
     <Paper className={classes.root} elevation={1}>
       <Typography gutterBottom variant="h4" align="center">
@@ -49,130 +184,73 @@ const ArticleForm = props => {
       <Grid
         container
         direction="row"
-        justify="space-between"
+        justify="space-evenly"
         alignItems="flex-start"
         spacing={16}
       >
-        <Grid item xs={5}>
-          <ArticleFormInput label="Titre" icon={<TitleIcon />}>
-            <TextField
-              id="article-title"
-              placeholder="Titre de l'annonce"
-              fullWidth
-              required
-            />
-          </ArticleFormInput>
-
-          <ArticleFormInput
-            label="Description"
-            icon={<TextFieldsIcon />}
-            errorText="Trop court"
+        {fields.map(field => (
+          <AddFieldFormat
+            key={field.id}
+            size={5}
+            errorText=""
+            render={() => (
+              <ArticleFieldText
+                label={field.label}
+                id={field.id}
+                fieldtype={field.type}
+                value={state[field.id]}
+                onChange={handleChange}
+                options={field.options}
+                required={field.type !== 'select'}
+              />
+            )}
+          />
+        ))}
+        <Grid item xs={12}>
+          <Divider />
+          <Grid
+            className={classes.divPart}
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="flex-start"
+            spacing={16}
           >
-            <TextField
-              id="article-description"
-              multiline
-              placeholder="Description de ce que vous vendez"
-              rowsMax={20}
-              fullWidth
-              required
-            />
-          </ArticleFormInput>
-
-          <ArticleFormInput label="Sexe" icon={<ChildCareIcon />}>
-            <Select
-              value="unisex"
-              fullWidth
-              onChange={undefined}
-              inputProps={{
-                name: 'sex',
-                id: 'article-sex',
-              }}
-            >
-              <MenuItem value="unisex">Unisexe</MenuItem>
-              <MenuItem value="girl">Fille</MenuItem>
-              <MenuItem value="boy">Garçon</MenuItem>
-            </Select>
-          </ArticleFormInput>
-
-          <ArticleFormInput label="Prix" icon={<EuroSymbolIcon />}>
-            <Input fullWidth id="article-price" placeholder="Prix" required />
-          </ArticleFormInput>
-        </Grid>
-
-        <Grid item xs={5}>
-          <Divider component="br" />
-          <Typography gutterBottom variant="body1" align="center">
-            Ajouter des photos (1 photo obligatoire)
-          </Typography>
-          <ArticleFormInput label="" icon={<AddPhotoAlternateIcon />}>
-            <Input
-              fullWidth
-              type="file"
-              id="article-photo1"
-              name="photo1"
-              required
-            />
-          </ArticleFormInput>
-          <ArticleFormInput label="" icon={<AddPhotoAlternateIcon />}>
-            <Input
-              fullWidth
-              type="file"
-              id="article-photo2"
-              name="photo2"
-              required
-            />
-          </ArticleFormInput>
-          <ArticleFormInput label="" icon={<AddPhotoAlternateIcon />}>
-            <Input
-              fullWidth
-              type="file"
-              id="article-photo3"
-              name="photo3"
-              required
-            />
-          </ArticleFormInput>
-          <ArticleFormInput label="" icon={<AddPhotoAlternateIcon />}>
-            <Input
-              fullWidth
-              type="file"
-              id="article-photo4"
-              name="photo4"
-              required
-            />
-          </ArticleFormInput>
-          <ArticleFormInput label="" icon={<AddPhotoAlternateIcon />}>
-            <Input
-              fullWidth
-              type="file"
-              id="article-photo5"
-              name="photo5"
-              required
-            />
-          </ArticleFormInput>
+            <Grid item xs={12}>
+              <Typography gutterBottom variant="h6" align="center">
+                Ajouter des photos
+              </Typography>
+            </Grid>
+            {photos.map(photo => (
+              <AddFieldFormat
+                key={photo}
+                size={5}
+                errorText=""
+                render={() => (
+                  <ArticleFieldText
+                    id={photo}
+                    fieldtype="file"
+                    value={state[photo]}
+                    onChange={handleChange}
+                    helperText={
+                      photo === 'photo1'
+                        ? 'Photo de couverture*'
+                        : 'Photo facultative'
+                    }
+                    required={photo === 'photo1'}
+                  />
+                )}
+              />
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-
-      <Grid
-        className={classes.buttons}
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="flex-start"
-        spacing={16}
-      >
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-        >
-          Annuler
-          <ClearIcon className={classes.rightIcon} />
-        </Button>
-        <Button variant="contained" color="primary" className={classes.button}>
-          Publier
-          <DoneIcon className={classes.rightIcon} />
-        </Button>
-      </Grid>
+      <ArticleButtons
+        leftText="Annuler"
+        leftIcon={<ClearIcon className={classes.rightIcon} />}
+        rightText="Publier"
+        rightIcon={<DoneIcon className={classes.rightIcon} />}
+      />
     </Paper>
   )
 }
