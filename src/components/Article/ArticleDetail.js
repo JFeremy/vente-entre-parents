@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 
+import WarningIcon from '@material-ui/icons/Warning'
 import StarIcon from '@material-ui/icons/Star'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import IconButton from '@material-ui/core/IconButton'
@@ -58,16 +60,17 @@ const ArticleDetail = props => {
     price,
     seller,
     photos,
+    nbView,
   } = props.article
 
   const fields = [
     {
-      label: 'Catégorie',
-      text: category,
-    },
-    {
       label: 'Sexe',
       text: sex,
+    },
+    {
+      label: 'Catégorie',
+      text: category,
     },
     {
       label: 'Age',
@@ -76,6 +79,10 @@ const ArticleDetail = props => {
     {
       label: 'Prix',
       text: `${price} €`,
+    },
+    {
+      label: 'Nombre de vue',
+      text: `${nbView} fois`,
     },
   ]
 
@@ -111,6 +118,10 @@ const ArticleDetail = props => {
               )}
             />
           ))}
+          <Button variant="outlined" className={classes.button}>
+            <WarningIcon />
+            SIGNALER
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <GridList className={classes.gridList} cols={1.5}>

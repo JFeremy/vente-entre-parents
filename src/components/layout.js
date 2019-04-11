@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import getFirebase from '../firebase'
-import FirebaseContext from './FirebaseContext'
-import SignIn from '../containers/SignIn'
+import FirebaseContext from '../context/FirebaseContext'
 
 import Header from './header'
+import Filter from './Filter'
+import AppDrawer from './AppDrawer'
 import './layout.css'
 
 class Layout extends Component {
@@ -82,6 +83,11 @@ class Layout extends Component {
             </Helmet>
             <Header siteTitle={data.site.siteMetadata.title} />
             <FirebaseContext.Provider value={firebase}>
+              <AppDrawer
+                onClickElement={undefined}
+                isOpen={true}
+                isLogged={authenticated ? true : false}
+              />
               <div
                 style={{
                   margin: '0 auto',
@@ -90,9 +96,10 @@ class Layout extends Component {
                   paddingTop: 0,
                 }}
               >
-                {authenticated ? this.props.children : <SignIn />}
+                {this.props.children}
               </div>
             </FirebaseContext.Provider>
+            <Filter />
           </>
         )}
       />

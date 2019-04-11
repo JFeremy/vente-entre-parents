@@ -23,63 +23,47 @@ const styles = theme => ({
 })
 
 const ArticlePreview = props => {
-  const {
-    classes,
-    title,
-    sex,
-    age,
-    category,
-    price,
-    nbView,
-    isFavorite,
-  } = props
+  const { classes, title, sex, age, category, price, isFavorite } = props
   return (
-    <Badge badgeContent={nbView} color="secondary">
-      <Card className={classes.card} raised>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image="https://i2.cdscdn.com/pdt2/0/6/6/1/700x700/mp09604066/rw/mode-fille-2-pcs-ensemble-de-vetement-top-licorne.jpg"
-            title="Contemplative Reptile"
-          />
-          <Typography gutterBottom variant="h6" align="center">
-            {title}
-          </Typography>
-          <Typography gutterBottom variant="caption" align="center">
-            <strong>Sexe:</strong> {sex}
-          </Typography>
-          <Typography gutterBottom variant="caption" align="center">
-            <strong>Catégorie:</strong> {category}
-          </Typography>
-          <Typography gutterBottom variant="caption" align="center">
-            <strong>Taille(s):</strong>{' '}
-            {age.length === 2 ? `${age[0]} - ${age[1]} ` : `${age[0]}`}
-          </Typography>
-          <Typography gutterBottom variant="h6" align="center" color="primary">
-            {price} €
-          </Typography>
-          {isFavorite && (
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <Chip
-                icon={<StarIcon />}
-                label="Annonce enregistrée"
-                onDelete={() => {
-                  alert('RETIRER DES FAVORIS')
-                }}
-                color="secondary"
-                deleteIcon={<CloseIcon />}
-                variant="outlined"
-              />
-            </Grid>
-          )}
-        </CardActionArea>
-      </Card>
-    </Badge>
+    <Card className={classes.card} raised>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image="https://i2.cdscdn.com/pdt2/0/6/6/1/700x700/mp09604066/rw/mode-fille-2-pcs-ensemble-de-vetement-top-licorne.jpg"
+          title="Contemplative Reptile"
+        />
+        <Typography gutterBottom variant="h6" align="center">
+          {title}
+        </Typography>
+        <Typography gutterBottom variant="caption" align="center">
+          <strong>Sexe:</strong> {sex}
+        </Typography>
+        <Typography gutterBottom variant="caption" align="center">
+          <strong>Catégorie:</strong> {category}
+        </Typography>
+        <Typography gutterBottom variant="caption" align="center">
+          <strong>Age:</strong>{' '}
+          {age.length === 2 ? `${age[0]} - ${age[1]} ` : `${age[0]}`}
+        </Typography>
+        <Typography gutterBottom variant="h6" align="center" color="primary">
+          {price} €
+        </Typography>
+        {isFavorite && (
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Chip
+              icon={<StarIcon />}
+              label="Annonce enregistrée"
+              onDelete={() => {
+                alert('RETIRER DES FAVORIS')
+              }}
+              color="secondary"
+              deleteIcon={<CloseIcon />}
+              variant="outlined"
+            />
+          </Grid>
+        )}
+      </CardActionArea>
+    </Card>
   )
 }
 
