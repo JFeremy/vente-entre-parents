@@ -86,7 +86,7 @@ class Layout extends Component {
               <AppDrawer
                 onClickElement={undefined}
                 isOpen={true}
-                isLogged={authenticated ? true : false}
+                isLogged={true /*authenticated*/}
               />
               <div
                 style={{

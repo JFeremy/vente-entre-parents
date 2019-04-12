@@ -23,7 +23,16 @@ const styles = theme => ({
 })
 
 const ArticlePreview = props => {
-  const { classes, title, sex, age, category, price, isFavorite } = props
+  const {
+    classes,
+    title,
+    sex,
+    age,
+    category,
+    price,
+    nbView,
+    isFavorite,
+  } = props
   return (
     <Card className={classes.card} raised>
       <CardActionArea>

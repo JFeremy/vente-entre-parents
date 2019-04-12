@@ -12,6 +12,7 @@ import { withFirebase } from '../context/FirebaseContext'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import StoreIcon from '@material-ui/icons/Store'
+import StarIcon from '@material-ui/icons/Star'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ContactSupportIcon from '@material-ui/icons/ContactSupport'
@@ -37,10 +38,17 @@ const styles = theme => ({
 })
 
 const AppDrawer = props => {
-  const { classes, isOpen, isLogged, onClickElement, onClickClose } = props
+  const {
+    classes,
+    isOpen,
+    isLogged,
+    onClickElement,
+    onClickClose,
+    firebase,
+  } = props
 
   const signOut = () => {
-    //this.props.firebase.auth().signOut()
+    firebase.auth().signOut()
   }
 
   function renderAccount() {
@@ -99,6 +107,12 @@ const AppDrawer = props => {
                 <AddCircleIcon />
               </ListItemIcon>
               <ListItemText primary="Déposer une annonce" />
+            </ListItem>
+            <ListItem button onClick={() => onClickElement('detail')}>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Mes annonces enregistrées" />
             </ListItem>
             <ListItem button onClick={() => onClickElement('detail')}>
               <ListItemIcon>

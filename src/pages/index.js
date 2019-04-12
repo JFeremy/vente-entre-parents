@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-import SignOut from '../containers/SignOut'
 import ArticlePreview from '../components/Article/ArticlePreview'
 import ArticleDetail from '../components/Article/ArticleDetail'
 import ArticleForm from '../components/Article/ArticleForm'
@@ -58,10 +57,10 @@ const IndexPage = props => {
         age={['3 mois', '12 mois']}
         price={50}
         isFavorite={true}
+        nbView={5}
       />
       <ArticleForm />
       <Link to="/page-2/">Go to page 2 </Link>
-      <SignOut />
     </Layout>
   )
 }
