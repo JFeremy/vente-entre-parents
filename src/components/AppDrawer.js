@@ -7,7 +7,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import { withFirebase } from '../context/FirebaseContext'
+import { withFirebase } from '../store/FirebaseContext'
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'

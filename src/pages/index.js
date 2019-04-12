@@ -17,7 +17,7 @@ const IndexPage = props => {
         See example data fetcehed from firebase: in{' '}
         <code>FetchingExample.js</code>
       </p>
-      <SignIn />
+      <SignIn firebase={props.firebase} />
       <ArticleDetail
         article={{
           title: 'Lot de vêtement pour fille',

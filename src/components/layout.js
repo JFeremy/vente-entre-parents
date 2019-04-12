@@ -1,10 +1,17 @@
+// LIBRARY
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import getFirebase from '../firebase'
-import FirebaseContext from '../context/FirebaseContext'
 
+// FUNCTION
+import getFirebase from '../firebase'
+
+// CONTEXT
+import FirebaseContext from '../store/FirebaseContext'
+import UserProvider, { UserContext } from '../store/UserContext'
+
+// COMPONENT
 import Header from './header'
 import Filter from './Filter'
 import AppDrawer from './AppDrawer'
@@ -15,6 +22,7 @@ class Layout extends Component {
     firebase: null,
     authenticated: false,
   }
+  static contextType = UserContext
 
   ChangeLanguage = () => {
     let _strSignInLinks = document.getElementsByClassName(
@@ -57,6 +65,8 @@ class Layout extends Component {
   render = () => {
     const { firebase, authenticated } = this.state
 
+    const testLog = this.contextType
+    console.log(testLog)
     if (!firebase) return null
 
     return (
@@ -82,23 +92,25 @@ class Layout extends Component {
               <html lang="en" />
             </Helmet>
             <Header siteTitle={data.site.siteMetadata.title} />
-            <FirebaseContext.Provider value={firebase}>
-              <AppDrawer
-                onClickElement={undefined}
-                isOpen={true}
-                isLogged={true /*authenticated*/}
-              />
-              <div
-                style={{
-                  margin: '0 auto',
-                  maxWidth: 960,
-                  padding: '0px 1.0875rem 1.45rem',
-                  paddingTop: 0,
-                }}
-              >
-                {this.props.children}
-              </div>
-            </FirebaseContext.Provider>
+            <UserProvider>
+              <FirebaseContext.Provider value={firebase}>
+                <AppDrawer
+                  onClickElement={undefined}
+                  isOpen={true}
+                  isLogged={true /*authenticated*/}
+                />
+                <div
+                  style={{
+                    margin: '0 auto',
+                    maxWidth: 960,
+                    padding: '0px 1.0875rem 1.45rem',
+                    paddingTop: 0,
+                  }}
+                >
+                  {this.props.children}
+                </div>
+              </FirebaseContext.Provider>
+            </UserProvider>
             <Filter />
           </>
         )}
