@@ -4,7 +4,7 @@ import { StyledFirebaseAuth } from 'react-firebaseui'
 import Typography from '@material-ui/core/Typography'
 
 import { getUiConfig } from '../firebase'
-import { withFirebase } from '../context/FirebaseContext'
+import { withFirebase } from '../store/FirebaseContext'
 
 const SignIn = ({ firebase }) => (
   <>
